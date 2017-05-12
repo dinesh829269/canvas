@@ -15,7 +15,8 @@
         "cnvs/paper-dark": "*",
         "doctrine/dbal": "2.5.*",
         "fzaninotto/faker": "~1.4",
-        "jeroen-g/laravel-packager": "^1.5"
+        "jeroen-g/laravel-packager": "^1.5",
+        "laravelcollective/html": "^5.3"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",

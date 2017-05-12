@@ -11,3 +11,4 @@
 |
 */
 
+Route::resource('service_catelog', 'servicecatalog\\service_catelogController');
