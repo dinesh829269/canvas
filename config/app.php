@@ -169,6 +169,13 @@ return [
         App\Providers\EventServiceProvider::class,
         Canvas\CanvasServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        dinesh\menu\menuServiceProvider::class,
+        
+        /**
+         * 
+         */
+        JeroenG\Packager\PackagerServiceProvider::class,
     ],
 
     /*

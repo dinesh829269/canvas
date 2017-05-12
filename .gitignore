@@ -24,3 +24,4 @@ composer.lock
 yarn.lock
 
 npm-debug.log
+/nbproject/private/
