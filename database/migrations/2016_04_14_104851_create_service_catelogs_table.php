@@ -15,14 +15,12 @@ class CreateServiceCatelogsTable extends Migration {
         Schema::create('service_catelogs', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('color');
+            $table->integer('sequence')->nullable();
             $table->text('description');
             $table->integer('parent_id')->nullable()->unsigned();
             $table->string('image');
             //$table->foreign('parent_id')->references('id')->on('service_catelogs')->onDelete('cascade');
-            $table->string('status');
-            $table->string('is_approved')->default('pending');
-            $table->timestamps();
+             $table->timestamps();
         });
     }
 

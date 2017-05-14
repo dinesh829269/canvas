@@ -11,4 +11,8 @@
 |
 */
 
-Route::resource('service_catelog', 'servicecatalog\\service_catelogController');
+Route::group(['prefix' => 'admin'], function () {
+
+	Route::resource('service_catelog', 'servicecatalog\\service_catelogController');
+
+});

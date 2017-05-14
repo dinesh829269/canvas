@@ -52,7 +52,7 @@ class service_catelogController extends Controller {
             $data = array(
                 '_token' => $request->input('_token'),
                 'name' => $request->input('name'),
-                'sequence' => $request->input('id'),
+                //'sequence' => $request->input('id'),
                 'description' => $request->input('description')
             );
 
@@ -94,7 +94,7 @@ class service_catelogController extends Controller {
             //print_r($data);die;
 
 
-            if ($request->input('root_category') == '2') {
+            if (!empty($request->input('parent_id'))) {
                $data['parent_id'] = $request->input('parent_id');
             } else {
                $data['parent_id'] = NULL;
@@ -104,7 +104,7 @@ class service_catelogController extends Controller {
             $service_catalog = service_catelog::create($data);
 
             Session::flash('flash_message', 'Service Catelog added!');
-            return redirect('admin/service_catelog/status/pending');
+            return redirect('admin/service_catelog');
          } else {
             Session::flash('add_errors', 'Already exists with same name ');
             return Redirect::back();
@@ -119,12 +119,8 @@ class service_catelogController extends Controller {
     * @return Response
     */
    public function show($id) {
-      if (Auth::user()->can('create.service_catalog')) {
          $service_catelog = service_catelog::findOrFail($id);
-         return view('service_catelog.show', compact('service_catelog'));
-      } else {
-         return view('errors.notauthorise');
-      }
+         return view('service_catelog.show', compact('service_catelog'));      
    }
 
    
@@ -164,9 +160,7 @@ class service_catelogController extends Controller {
 
             $data = array(
                 'name' => $request->input('name'),
-                'description' => $request->input('description'),
-                'color' => $request->input('color'),
-                'status' => 'active'
+                'description' => $request->input('description')
             );
 
             if (Input::hasFile('image')) {
@@ -206,7 +200,7 @@ class service_catelogController extends Controller {
             }
 
 
-            if ($request->input('root_category') == '2') {
+            if (!empty($request->input('parent_id'))) {
                $data['parent_id'] = $request->input('parent_id');
             } else {
                $data['parent_id'] = NULL;
@@ -217,7 +211,7 @@ class service_catelogController extends Controller {
             $service_catelog->update($data);
             Session::flash('flash_message', 'Service Catelog updated!');
 
-            return redirect('admin/service_catelog/status/pending');
+            return redirect('admin/service_catelog');
          } else {
             Session::flash('edit_errors', 'Already exists with same name ');
             return Redirect::back();

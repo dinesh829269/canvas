@@ -1,20 +1,26 @@
-@extends('layouts.dashboard')
-@extends('layouts.dashboardsidebar')
+@extends('canvas::backend.layout')
+
+@section('title')
+    <title>{{ \Canvas\Models\Settings::blogTitle() }} | Help</title>
+@stop
 
 @section('content')
 
+<section id="main">
+@include('canvas::backend.shared.partials.sidebar-navigation')
+<section id="content">
+            <div class="container">
 
 <div class="content-wrapper" >
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-           Service Catalogue 
+           Menu
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="">Service Manager</li>
-            <li class=""> Services</li>
-            <li class="active">Service Catalogue </li>
+            <li class=""> Menu</li>
+            
         </ol>
     </section>
 
@@ -25,7 +31,7 @@
 
            
            
-            <a href="{{ url('/admin/service_catelog/status/pending') }}" class="btn btn-primary pull-right btn-sm">Back to Service Catalogue </a>
+            <a href="{{ url('/admin/service_catelog/') }}" class="btn btn-primary pull-right btn-sm">Back to Menu </a>
            
         </div>
         </div>
@@ -52,24 +58,6 @@
                         <td>Parent</td>
                         <td>@if($service_catelog->parent_category) {{ $service_catelog->parent_category->name }} @endif </td>
                         </tr>
-                        <tr>
-                          <td>Image</td>
-                          <?php
-                $a = $service_catelog->image;
-
-                $break = str_replace('/service_catalog', '/service_catalog/thumbnail', $a)
-
-//echo $break;
-                ?>
-                        <td>   <?php if ($a) { ?><img src="<?php echo $break; ?>" style="
-    height: 30px;" /><?php } ?></td>
-                        
-                        </tr>
-                        <tr>
-                        <td>Color</td>
-                        <td> {{ $service_catelog->color }} </td>
-                        </tr>
-                        
                 </tbody>    
             </table>
         </div>
@@ -78,17 +66,6 @@
 
     </div>
 </div>
-    <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-        </div>
-        <strong>Copyright &copy; 2016-2017 Whimbl Software.</strong> All rights reserved.
-    </footer>
-
-<!-- ./wrapper -->
-
-<script>
-    function get_filter($status) {
-        window.location.href = "{{ url('tax/tax/status') }}/" + $status;
-    }
-</script>
+   
+   </section>
 @endsection
